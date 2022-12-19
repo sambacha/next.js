@@ -66,6 +66,18 @@ exports[`ReactRefreshLogBox app logbox: can recover from a component error 1`] =
   6 | "
 `;
 
+exports[`ReactRefreshLogBox app logbox: can recover from a event handler error 1`] = `
+"index.js (8:18) @ eval
+
+   6 | const increment = useCallback(() => {
+   7 |   setCount(c => c + 1)
+>  8 |   throw new Error('oops')
+     |        ^
+   9 | }, [setCount])
+  10 | return (
+  11 |   <main>"
+`;
+
 exports[`ReactRefreshLogBox app logbox: can recover from a syntax error without losing state 1`] = `
 "./index.js
 Error: 
@@ -142,9 +154,12 @@ exports[`ReactRefreshLogBox app syntax > runtime error 2`] = `
 "./index.js
 Error: 
   x Expected '}', got '<eof>'
-   ,----
- 8 | export default function FunctionNamed() {
-   :                                         ^
+   ,-[5:1]
+ 5 |           i++
+ 6 |           throw Error('no ' + i)
+ 7 |         }, 1000)
+ 8 |         export default function FunctionNamed() {
+   :                                                 ^
    \`----
 
 Caused by:
@@ -157,9 +172,12 @@ exports[`ReactRefreshLogBox app syntax > runtime error 3`] = `
 "./index.js
 Error: 
   x Expected '}', got '<eof>'
-   ,----
- 8 | export default function FunctionNamed() {
-   :                                         ^
+   ,-[5:1]
+ 5 |           i++
+ 6 |           throw Error('no ' + i)
+ 7 |         }, 1000)
+ 8 |         export default function FunctionNamed() {
+   :                                                 ^
    \`----
 
 Caused by:
@@ -172,15 +190,21 @@ exports[`ReactRefreshLogBox app unterminated JSX 1`] = `
 "./index.js
 Error: 
   x Unexpected token. Did you mean \`{'}'}\` or \`&rbrace;\`?
-   ,----
- 8 | }
-   : ^
+   ,-[5:1]
+ 5 |               <p>lol</p>
+ 6 |             div
+ 7 |           )
+ 8 |         }
+   :         ^
+ 9 |       
    \`----
 
   x Unexpected eof
-   ,----
- 9 |  
-   : ^
+   ,-[6:1]
+ 6 |             div
+ 7 |           )
+ 8 |         }
+ 9 |       
    \`----
 
 Caused by:
