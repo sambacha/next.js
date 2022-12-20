@@ -281,8 +281,8 @@ export class Playwright extends BrowserInterface {
     return this.chain((el) => el.getAttribute(attr)) as T
   }
 
-  async hasElementByCssSelector(selector: string) {
-    return this.eval(`!!document.querySelector('${selector}')`) as any
+  hasElementByCssSelector(selector: string) {
+    return this.eval<boolean>(`!!document.querySelector('${selector}')`)
   }
 
   keydown(key: string): BrowserInterface {
